@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Crisis Management System	</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body>
+   
+    <div class="navbar-inner"><a class="brand"></a>
+        <ul class="nav">
+            <li class="active"><a href="#">Home</a>
+            </li>
+            <li><a href="#">Link</a>
+            </li>
+            <li><a href="#">Link</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="container-fluid">
+
+
+    <h1>Login Form</h1>
+
+	{{ state }}
+	<form action="/home/login" method="post">
+		{% csrf_token %}
+		username:
+		<input type="text" name="username" value="{{ username }}" /><br />
+		password:
+		<input type="password" name="password" value="" /><br />
+
+		<input type="submit" value="Log In" />
+	</form>
+   
+    
+    
+</div>
+
+</body>
+</html>
