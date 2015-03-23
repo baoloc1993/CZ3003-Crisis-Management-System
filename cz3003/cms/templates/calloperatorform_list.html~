@@ -1,0 +1,4 @@
+<h1>Incident Forms</h1>
+<ul>
+{% object_list %}
+</ul>

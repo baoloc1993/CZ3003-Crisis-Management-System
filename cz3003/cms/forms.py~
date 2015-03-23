@@ -1,0 +1,8 @@
+from django import forms
+from cms.models import CallOperatorForm
+from datetime import datetime    
+
+class MyForm(forms.ModelForm):
+    class Meta:
+        model = CallOperatorForm
+        fields = ['id_of_caller', 'name_of_caller', 'contact_number', 'nric', 'content', 'operator_id', 'location', 'severity_level']
