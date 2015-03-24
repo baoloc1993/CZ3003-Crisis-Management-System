@@ -47,8 +47,7 @@ body{
 	position:relative;
 }
 a{
-
-	color: #000;
+	color: #fff;
 	text-decoration: none;
 }
 .clr{
@@ -119,13 +118,12 @@ h1 span{
     margin: 0 auto;
 }
 .more ul{
-
 	display:block;
 	text-align:center;
     height: 30px;
 }
 .more ul li{
-	display: inline;
+	display: block;
     padding: 4px 2px;
     float:left;
 }

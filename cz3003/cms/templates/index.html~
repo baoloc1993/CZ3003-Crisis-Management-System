@@ -522,7 +522,7 @@ function toggleBounce() {
 				<a href="update" class="a-btn">
 					<span class="a-btn-symbol">Q</span>
 					<span class="a-btn-text">Suggest a crisis</span> 
-					<span class="a-btn-slide-text">Haze	 / Tsunami</span>
+					<span class="a-btn-slide-text">Haze / Tsunami</span>
 				</a>
 			</div>
 
