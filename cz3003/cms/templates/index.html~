@@ -457,7 +457,6 @@
 		icon: image	
   	});
 	{% for form in formList %}
-		image = {url:"{% static "images/drop.png" %}", size:(20, 32)};
 		myLatlng = new google.maps.LatLng({{ form.X_coordinate }}, {{ form.Y_coordinate }});
   		marker = new google.maps.Marker({
     			map:map,
@@ -519,6 +518,11 @@ function toggleBounce() {
 					<span class="a-btn-symbol">R</span>
 					<span class="a-btn-text">Update new data</span> 
 					<span class="a-btn-slide-text">Incident / Crisis</span>
+				</a>
+				<a href="update" class="a-btn">
+					<span class="a-btn-symbol">Q</span>
+					<span class="a-btn-text">Suggest a crisis</span> 
+					<span class="a-btn-slide-text">Haze	 / Tsunami</span>
 				</a>
 			</div>
 
