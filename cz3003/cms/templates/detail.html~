@@ -1,0 +1,10 @@
+{% load staticfiles %}
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+
+<li>{{ calloperatorform.id_of_caller }}</li>
+<li>{{ calloperatorform.name_of_caller }}</li>
+<li>{{ calloperatorform.contact_number }}</li>
+<li>{{ calloperatorform.nric }}</li>
+<li>{{ calloperatorform.content  }}</li>
+<li>{{ calloperatorform.date  }}</li>

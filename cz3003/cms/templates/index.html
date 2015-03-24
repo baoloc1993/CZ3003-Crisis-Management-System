@@ -2,21 +2,30 @@
 <html lang="en">
 <head>
 <title>Crisis Management System	</title>
+  {% load staticfiles %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" >
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-    <style type="text/css">
-      html { height: 100% }
-      body { height: 100%; margin: 0; padding: 0; width:100%;}
-      #map-canvas { height: 100% }
-    </style>
-    <script type="text/javascript"
+  <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
+  <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+  <style type="text/css">
+  	html { height: 100% }
+  	body { height: 100%; margin: 0; padding: 0; width:100%;}
+   	#map-canvas {
+        	width: 1300px;
+        	height: 800px;
+		margin-right: 0px;
+		background-color: #CCC;
+        }
+   </style>
+   <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkxRhKpGCONt_qyHxURTnK-cdh5wD-5l8&sensor=false">
-    </script>
-    <script type="text/javascript">
+   </script>
+   <script type="text/javascript">
       function initialize() {
 
         //Initializing the map
@@ -26,13 +35,12 @@
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
-
         //Defining the region coordinates
         var southWestCoords_1,southWestCoords_2,northWestCoords,centralSingaporeCoords, northEastCoords, SouthEastCoords;
         var southWestBound_1,southWestBound_2,northWestBound,centralSingaporeBound, northEastBound, SouthEastBound;
         
         var southWestCoords_1 = [
-         new google.maps.LatLng(1.4366551582477902, 103.75316619873047),
+         	  new google.maps.LatLng(1.4366551582477902, 103.75316619873047),
                   new google.maps.LatLng(1.431850145552487, 103.75110626220703),
                   new google.maps.LatLng(1.4109139016955707, 103.7552261352539),
                   new google.maps.LatLng(1.4040495182936055, 103.75213623046875),
@@ -438,8 +446,37 @@
         northEastBound.setMap(map);
         SouthEastBound.setMap(map);
 
-        
+	//Set markers on the map
+	var image = "{% static "images/drop.png" %}";
+  	var myLatlng = new google.maps.LatLng(1.377278, 103.797798);
+  	marker = new google.maps.Marker({
+    		map:map,
+    		draggable:true,
+    		animation: google.maps.Animation.DROP,
+    		position: myLatlng,
+		icon: image	
+  	});
+	{% for form in formList %}
+		myLatlng = new google.maps.LatLng({{ form.X_coordinate }}, {{ form.Y_coordinate }});
+  		marker = new google.maps.Marker({
+    			map:map,
+    			draggable:true,
+    			animation: google.maps.Animation.DROP,
+    			position: myLatlng,
+			icon: image	
+  		});
+    	{% endfor %}
+        //google.maps.event.addListener(marker, 'click', toggleBounce);
 
+}
+
+function toggleBounce() {
+
+  if (marker.getAnimation() != null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }
 }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
@@ -447,7 +484,7 @@
 </head>
 
 <body>
-
+<!--
     <div class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="navbar-inner"><a class="brand" href="#">Title</a>
 		<ul class="nav">
@@ -460,15 +497,38 @@
 		</ul>
 	    </div>
 </div>
-
+-->
 
 <div class="container-fluid">
-
-
-    <h3>SINGAPORE MAP</h3>    
+    <p align="Center">
+    <font size="6">Operator Panel</font>
+</p>
 </div>
 
-<div id="map-canvas"/>
+<table>
+	<tr>
+		<td valign="top">
+			<div class="button-wrapper">
+				<a href="incidents" class="a-btn" width = >
+					<span class="a-btn-symbol">K</span>
+					<span class="a-btn-text">Review old data</span> 
+					<span class="a-btn-slide-text">Incident / Crisis</span>
+				</a>
+				<a href="update" class="a-btn">
+					<span class="a-btn-symbol">R</span>
+					<span class="a-btn-text">Update new data</span> 
+					<span class="a-btn-slide-text">Incident / Crisis</span>
+				</a>
+				<a href="update" class="a-btn">
+					<span class="a-btn-symbol">Q</span>
+					<span class="a-btn-text">Suggest a crisis</span> 
+					<span class="a-btn-slide-text">Haze / Tsunami</span>
+				</a>
+			</div>
 
+		</td>
+		<td><div id="map-canvas"/></td>
+	</tr>
+</table>
 </body>
 </html>
