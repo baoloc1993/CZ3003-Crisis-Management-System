@@ -13,6 +13,7 @@ from django.utils import timezone
 from cms.models import CallOperatorForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.contrib.auth import logout
 
 class LoggedInMixin(object):
 
@@ -65,3 +66,15 @@ class UpdateView(FormView):
         # It should return an HttpResponse.
         form.save()
         return super(UpdateView, self).form_valid(form)
+
+
+
+def logout_view(request):
+	logout(request)
+	return render_to_response("admin/login2.html")
+
+def home(request):
+	if request.user.is_authenticated():
+		return render_to_response ("index.html")
+	else:
+		return render_to_response("admin/login2.html")

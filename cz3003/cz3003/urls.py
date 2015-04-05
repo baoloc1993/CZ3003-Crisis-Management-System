@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.views.generic import RedirectView
 from django.contrib import admin
 from cms import views
 
@@ -11,5 +12,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^home/', include('cms.urls', namespace="cms")),
+
+   	
 
 )

@@ -484,20 +484,14 @@ function toggleBounce() {
 </head>
 
 <body>
-<!--
-    <div class="navbar navbar-inverse navbar-fixed-top">
-	    <div class="navbar-inner"><a class="brand" href="#">Title</a>
-		<ul class="nav">
-		    <li class="active"><a href="#">Home</a>
-		    </li>
-		    <li><a href="#">Link</a>
-		    </li>
-		    <li><a href="#">Link</a>
-		    </li>
-		</ul>
-	    </div>
-</div>
--->
+{% include "header.html" %}
+{% if user.is_authenticated %}
+	<script>
+		window.location.replace("../admin/login2.html");
+	</script>
+{% endif %}
+
+
 
 <div class="container-fluid">
     <p align="Center">

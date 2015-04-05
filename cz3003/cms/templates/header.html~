@@ -5,8 +5,9 @@
             </li>
             <li><a href="#">Back</a>
             </li>
-            <li><a href="#">Link</a>
+            <li><a id="logout" href="/home/logout">Log Out</a>
             </li>
+            
         </ul>
     </div>
 </div>

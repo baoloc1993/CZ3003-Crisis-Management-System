@@ -485,6 +485,13 @@ function toggleBounce() {
 
 <body>
 {% include "header.html" %}
+{% if user.is_authenticated %}
+	<script>
+		window.location.replace("admin/login2.html");
+	</script>
+{% endif %}
+
+
 
 <div class="container-fluid">
     <p align="Center">

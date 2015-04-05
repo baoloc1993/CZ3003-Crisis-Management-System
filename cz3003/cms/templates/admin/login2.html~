@@ -8,21 +8,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style.css" />
-
+{% load staticfiles %}
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
 </head>
 
 <body>
    
-    <div class="navbar-inner"><a class="brand"></a>
-        <ul class="nav">
-            <li class="active"><a href="#">Home</a>
-            </li>
-            <li><a href="#">Link</a>
-            </li>
-            <li><a href="#">Link</a>
-            </li>
-        </ul>
-    </div>
+{% include "header.html" %}
+<script>
+	var logout = document.getElementbyId ("logout");
+	logout.style.display = "none";
+</script>
 </div>
 <div class="container-fluid">
 
