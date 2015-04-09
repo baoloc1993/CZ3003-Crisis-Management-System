@@ -37,6 +37,7 @@ class CallOperatorForm (models.Model):
 	X_coordinate = models.DecimalField(max_digits=30, decimal_places=10)
 	Y_coordinate = models.DecimalField(max_digits=30, decimal_places=10)
 	severity_level = models.CharField (max_length  = 200)
+	status = models.SmallIntegerField()
 
 	def _call_operator_form_(self):
 		return 0

@@ -35,6 +35,7 @@ class Migration(migrations.Migration):
                 ('X_coordinate', models.DecimalField(max_digits=30, decimal_places=10)),
                 ('Y_coordinate', models.DecimalField(max_digits=30, decimal_places=10)),
                 ('severity_level', models.CharField(max_length=200)),
+                ('status', models.DecimalField(max_digits=1, decimal_places=0, default=1)),
             ],
             options={
             },

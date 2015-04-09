@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Crisis Management System  </title>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0; width:100%;}
+        #map-canvas {
+                width: 600px;
+                height: 480px;
+                margin-right: 0px;
+                background-color: #CCC;
+            }
+    </style>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkxRhKpGCONt_qyHxURTnK-cdh5wD-5l8&sensor=false">
+    </script>
+    <script type="text/javascript">
+        // --------------------------------------------------
+        // OP_Map
+        // --------------------------------------------------
+        // Forced by mapGen to provide markerAdding()
+        // Must be placed before loading mapGen.js
+        // --------------------------------------------------
+        function markerAdding() {
+            //Set markers on the map
+            var image = "{% static "images/drop.png" %}";
+            var myLatlng    = new google.maps.LatLng(1.377278, 103.797798);
+                marker      = new google.maps.Marker({
+                                    map:map,
+                                    draggable:true,
+                                    animation: google.maps.Animation.DROP,
+                                    position: myLatlng,
+                                    icon: image  
+                                });
+                {% for form in formList %}
+                    myLatlng    = new google.maps.LatLng({{ form.X_coordinate }}, {{ form.Y_coordinate }});
+                    marker      = new google.maps.Marker({
+                                        map:map,
+                                        draggable:true,
+                                        animation: google.maps.Animation.DROP,
+                                        position: myLatlng,
+                                        icon: image  
+                                    });
+                {% endfor %}
+                //google.maps.event.addListener(marker, 'click', toggleBounce);
+        }
+        // --------------------------------------------------
+    </script>
+    <script type="text/javascript"
+            src ="{% static "cms/js/mapGen.js" %}">
+    </script>
+
+</head>
+
+<body>
+{% include "header.html" %}
+{% if user.is_authenticated %}
+    <script>
+        window.location.replace("admin/login2.html");
+    </script>
+{% endif %}
+
+
+
+<div class="container-fluid">
+        <p align="Center">
+        <font size="6">Operator Panel</font>
+</p>
+</div>
+
+<table>
+  <tr>
+    <td valign="top">
+      <div class="button-wrapper">
+        <a href="{% url 'cms:DMincident-list' %}" class="a-btn">
+          <span class="a-btn-symbol">K</span>
+          <span class="a-btn-text">Review old data</span> 
+          <span class="a-btn-slide-text">Incident / Crisis</span>
+        </a>
+        <!-- <a href="update" class="a-btn">
+          <span class="a-btn-symbol">R</span>
+          <span class="a-btn-text">Update new data</span> 
+          <span class="a-btn-slide-text">Incident / Crisis</span>
+        </a>
+        <a href="update" class="a-btn">
+          <span class="a-btn-symbol">Q</span>
+          <span class="a-btn-text">Suggest a crisis</span> 
+          <span class="a-btn-slide-text">Haze / Tsunami</span>
+        </a> -->
+      </div>
+
+    </td>
+    <td><div id="map-canvas"/></td>
+  </tr>
+</table>
+</body>
+</html>

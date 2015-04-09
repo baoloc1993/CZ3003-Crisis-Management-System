@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+
+<div class="container-fluid">
+    <p align="Center">
+    <font size="6">DM Data Archive</font>
+    </p>
+</div>
+
+<ul>
+{% for incident in object_list %}
+    <li><a href="{% url 'cms:DMdetail' incident.id %}">
+	<font size="2" color="#00501F">
+		{{incident.id}}. 
+	</font>
+	<font size="3" color="#0000FF">
+		{{ incident.id_of_caller }}
+	</font>
+    </a></li>
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>

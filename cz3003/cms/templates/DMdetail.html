@@ -1,0 +1,85 @@
+{% load staticfiles %}
+<link href='http//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
+
+<table>
+	<tr height = "10px">
+		<td width="10px"></td>
+		<td />
+		<td width="10px"></td>
+		<td />
+	</tr>
+	<tr>
+		<td />
+		<td>ID</td>
+		<td />
+		<td>{{ calloperatorform.id_of_caller }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Name</td>
+		<td />
+		<td>{{ calloperatorform.name_of_caller }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Contact number</td>
+		<td />
+		<td>{{ calloperatorform.contact_number }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>NRIC</td>
+		<td />
+		<td>{{ calloperatorform.nric }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Content</td>
+		<td />
+		<td>{{ calloperatorform.content  }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Operator ID</td>
+		<td />
+		<td>{{ calloperatorform.operator_id  }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Severity Level</td>
+		<td />
+		<td>{{ calloperatorform.severity_level  }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Date</td>
+		<td />
+		<td>{{ calloperatorform.date  }}</td>
+	</tr>
+	<tr></tr>
+	<tr>
+		<td />
+		<td>Status</td>
+		<td />
+		<td>{{ calloperatorform.status  }}</td>
+	</tr>
+	{% if calloperatorform.status != 2 %}
+	<tr height="10px"></tr>
+	<tr>
+		<td />
+		<td colspan="3">
+			<div class="button-wrapper">
+		        <a href="{% url 'cms:DMupdate' calloperatorform.id %}" class="a-btn">
+		          <span class="a-btn-text">Update Status</span> 
+		          <span class="a-btn-slide-text">Update Status</span>
+		        </a>
+		    </div>
+		</td>
+	</tr>
+	{% endif %}
+</table>

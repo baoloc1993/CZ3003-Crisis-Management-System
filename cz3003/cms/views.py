@@ -41,9 +41,8 @@ def login(request):
     return render(request, 'admin/login2.html', {'state':state, 'username': username})
 
 def index(request):
-    formList = CallOperatorForm.objects.all()
+    formList = CallOperatorForm.objects.all().filter(status='2');
     return render_to_response("index.html", {'formList':formList})
-
 
 class IncidentListView(ListView):
     model = CallOperatorForm
@@ -66,6 +65,26 @@ class UpdateView(FormView):
         # It should return an HttpResponse.
         form.save()
         return super(UpdateView, self).form_valid(form)
+
+
+
+def DMindex(request):
+    formList = CallOperatorForm.objects.all();
+    return render_to_response("DMindex.html", {'formList':formList})
+
+def DMUpdate(request, pk=0):
+    crisis = CallOperatorForm.objects.get(id=pk)
+    crisis.status = 2
+    crisis.save()
+    return render_to_response("DMUpdate.html");
+
+class DMIncidentListView(ListView):
+    model = CallOperatorForm
+    template_name = "DMIncidentListView.html"
+
+class DMDetailView(generic.DetailView):
+    model = CallOperatorForm
+    template_name = 'DMdetail.html'
 
 
 
