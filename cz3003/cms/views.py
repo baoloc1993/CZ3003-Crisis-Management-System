@@ -14,6 +14,7 @@ from cms.models import CallOperatorForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import logout
+from django.middleware.csrf import get_token
 
 class LoggedInMixin(object):
 
@@ -21,24 +22,24 @@ class LoggedInMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(LoggedInMixin, self).dispatch(*args, **kwargs)
 
-def login(request):
-    state = "Please log in below..."
-    username = password = ''
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                state = "You're successfully logged in!"
-                return redirect('cms:index')
-            else:
-                state = "Your account is not active, please contact the site admin."
-        else:
-            state = "Your username and/or password were incorrect."
 
-    return render(request, 'admin/login2.html', {'state':state, 'username': username})
+def login(request):
+	state = "Please log in below..."
+	username = password = ''
+	if request.POST:
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+        
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				state = "You're successfully logged in!"
+				return redirect('cms:index')
+			else:
+				state = "Your account is not active, please contact the site admin."
+		else:
+			state = "Your username and/or password were incorrect."
+	return render_to_response('admin/login2.html', RequestContext(request),{'state':state, 'username': username})
 
 def index(request):
     formList = CallOperatorForm.objects.all().filter(status='2');
@@ -92,8 +93,10 @@ def logout_view(request):
 	logout(request)
 	return render_to_response("admin/login2.html")
 
+
 def home(request):
+	csrf_token = get_token(request)
 	if request.user.is_authenticated():
-		return render_to_response ("index.html")
+		return render_to_response ("index.html",RequestContext(request))
 	else:
-		return render_to_response("admin/login2.html")
+		return render_to_response("admin/login2.html", RequestContext(request))
