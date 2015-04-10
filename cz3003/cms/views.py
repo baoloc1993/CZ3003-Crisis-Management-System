@@ -44,6 +44,9 @@ def index(request):
     formList = CallOperatorForm.objects.all().filter(status='2');
     return render_to_response("index.html", {'formList':formList})
 
+def facebook(request):
+    return render_to_response("API/mytest.php")
+
 class IncidentListView(ListView):
     model = CallOperatorForm
     def get_context_data(self, **kwargs):

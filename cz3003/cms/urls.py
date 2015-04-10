@@ -14,6 +14,7 @@ urlpatterns = patterns('',
 		url(r'^dmupdate/(?P<pk>\d+)/$', views.DMUpdate, name='DMupdate'),
 
 		url(r'^index', views.index, name='index'),
+		url(r'^facebook', views.facebook, name='facebook'),
 		url(r'^update$', views.UpdateView.as_view(), name='detail'),
 		url(r'^incidents$', views.IncidentListView.as_view(), name='incident-list'),
 		url(r'^archive/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
