@@ -24,6 +24,7 @@ class LoggedInMixin(object):
 
 
 def login(request):
+	csrf_token = get_token(request)
 	state = "Please log in below..."
 	username = password = ''
 	if request.POST:
@@ -34,7 +35,7 @@ def login(request):
 		if user is not None:
 			if user.is_active:
 				state = "You're successfully logged in!"
-				return redirect('cms:index')
+				return render_to_response("index.html", RequestContext(request))
 			else:
 				state = "Your account is not active, please contact the site admin."
 		else:
@@ -42,8 +43,13 @@ def login(request):
 	return render_to_response('admin/login2.html', RequestContext(request),{'state':state, 'username': username})
 
 def index(request):
-    formList = CallOperatorForm.objects.all().filter(status='2');
-    return render_to_response("index.html", {'formList':formList})
+	csrf_token = get_token(request)
+	formList = CallOperatorForm.objects.all().filter(status='2')
+	if request.user.is_authenticated():
+		return render_to_response("index.html", {'formList':formList})
+	else:
+		return render_to_response("admin/login2.html", RequestContext(request) )
+
 
 class IncidentListView(ListView):
     model = CallOperatorForm
@@ -91,7 +97,7 @@ class DMDetailView(generic.DetailView):
 
 def logout_view(request):
 	logout(request)
-	return render_to_response("admin/login2.html")
+	return render_to_response("admin/login2.html", RequestContext(request))
 
 
 def home(request):

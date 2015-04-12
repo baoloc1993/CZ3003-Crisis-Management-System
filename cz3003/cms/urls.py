@@ -5,9 +5,9 @@ from cms import views
 urlpatterns = patterns('',
 		url(r'^$', views.home, name = 'home'),	
 		url(r'^login$', views.login, name='login'),
-		url(r'^logout/$', 'django.contrib.auth.views.logout',
-				  {'next_page': '/home/login'}),
-
+		#url(r'^logout/$', 'django.contrib.auth.views.logout',
+		#		  {'next_page': '/home/login'}),
+		url(r'^logout/$', views.logout_view, name = 'logout'),
 		url(r'^dmindex', views.DMindex, name='DMindex'),
 		url(r'^dmarchive/(?P<pk>\d+)/$', views.DMDetailView.as_view(), name='DMdetail'),
 		url(r'^dmincidents$', views.DMIncidentListView.as_view(), name='DMincident-list'),
