@@ -7,7 +7,7 @@ from datetime import datetime
 class SensorData (models.Model):
 	data = models.CharField(max_length = 200)
 	time = models.DateTimeField (max_length = 200)
-	type = models.CharField(max_length = 200)
+	#type = models.CharField(max_length = 200)
 
 #Map model
 class Map (models.Model):
@@ -94,6 +94,9 @@ class EmailMonitoring (models.Model):
 	def _generate_report_(report):
 		return report
 
+class CMSUser (models.Model):
+	username = models.CharField (max_length = 200)
+	user_type = models.CharField(max_length = 200)
 
 
 

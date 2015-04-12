@@ -7,7 +7,7 @@ from datetime import datetime
 class SensorData (models.Model):
 	data = models.CharField(max_length = 200)
 	time = models.DateTimeField (max_length = 200)
-	type = models.CharField(max_length = 200)
+	#type = models.CharField(max_length = 200)
 
 #Map model
 class Map (models.Model):
@@ -37,6 +37,7 @@ class CallOperatorForm (models.Model):
 	X_coordinate = models.DecimalField(max_digits=30, decimal_places=10)
 	Y_coordinate = models.DecimalField(max_digits=30, decimal_places=10)
 	severity_level = models.CharField (max_length  = 200)
+	status = models.SmallIntegerField()
 
 	def _call_operator_form_(self):
 		return 0
@@ -92,6 +93,11 @@ class Report (models.Model):
 class EmailMonitoring (models.Model):
 	def _generate_report_(report):
 		return report
+
+class CMSUser (django.contrib.auth.models.User):
+	username = models.CharField (max_length = 200)
+	user_type = models.CharField(max_length = 200)
+
 
 
 	
