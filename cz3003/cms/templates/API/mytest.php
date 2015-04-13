@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>Facebook Login Javascript Example</title>
+{% load staticfiles %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <meta charset="UTF-8">
 </head>
@@ -161,7 +162,7 @@ function sendtophp(input)
     //var teststring = "New trial";
     var teststring = ""+input+"";
     $.ajax({
-      url: "index.php?data="+teststring+"",
+      url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
       type: 'GET'
       }
     );
@@ -227,7 +228,7 @@ function sendtophp(input)
  }
 
  //get the values from text file
- var filepath = "Report.txt"
+ var filepath = "{% static "reports/Report.txt" %}";
  var anotherstring = "";
  var input = "";
  
@@ -266,6 +267,7 @@ function sendtophp(input)
 <br/><br/>
 <div id = "hell" aligh = "center"></div> 
 <br><br>
+<div id = "mytesttwitter"></div>
 <!--
 <button type = "button" onclick = 'sendtophp()'>Tweet</button>
 -->
