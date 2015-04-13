@@ -48,12 +48,28 @@ def index(request):
     sensorList = SensorData.objects.all();
     return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
 
+def email(request):
+    return render_to_response("emailSend.php")
+
 def customerindex(request):
     crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
     return render_to_response("customindex.html", {'crisisList':crisisList})
 
 def facebook(request):
-    return render_to_response("API/mytest.php")
+    return render_to_response("facebook.php")
+
+def facebookSelect(request):
+    return render_to_response("facebookSelect.html")
+
+def facebookBegin(request):
+    return render_to_response("facebookBegin.php")
+
+def facebookEnd(request):
+    return render_to_response("facebookEnd.php")
+
+def facebookSituation(request):
+    sensorList = SensorData.objects.all();
+    return render_to_response("facebookSituation.php", {'sensorList':sensorList})
 
 def twitter(request):
     return render_to_response("API/index.php")
@@ -105,6 +121,10 @@ def DMUpdate(request, pk=0):
     crisis.save()
     return render_to_response("DMUpdate.html");
 
+def CODelete(request, pk=0):
+    CallOperatorForm.objects.get(id=pk).delete();
+    return render_to_response("CODelete.html");
+
 def DMUpdateTerminate(request, pk=0):
     crisis = CrisisInstance.objects.get(id=pk)
     crisis.crisisStatus = 'Stopped'
@@ -118,6 +138,14 @@ class DMIncidentListView(ListView):
 class DMTerminateListView(ListView):
     model = CrisisInstance
     template_name = "DMTerminateListView.html"
+
+class DMOldView(generic.DetailView):
+    model = CrisisInstance
+    template_name = "DMolddetail.html"
+
+class DMOldListView(ListView):
+    model = CrisisInstance
+    template_name = "DMOldList.html"
 
 class DMDetailView(generic.DetailView):
     model = CrisisInstance

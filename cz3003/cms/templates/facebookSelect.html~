@@ -1,0 +1,29 @@
+<html>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
+<body>
+<table>
+  <tr>    
+    <td  valign="top" width = "400px">
+      <div class="button-wrapper">
+        <a href="fbBegin" class="a-btn" width = >
+          <span class="a-btn-symbol">K</span>
+          <span class="a-btn-text">Announce new crisis</span> 
+          <span class="a-btn-slide-text">Start a crisis</span>
+        </a>
+        <a href="fbEnd" class="a-btn">
+          <span class="a-btn-symbol">R</span>
+          <span class="a-btn-text">Announce crisis end</span> 
+          <span class="a-btn-slide-text">End of crisis</span>
+        </a>
+        <a href="fbStatus" class="a-btn">
+          <span class="a-btn-symbol">Q</span>
+          <span class="a-btn-text">Announce situation</span> 
+          <span class="a-btn-slide-text">Current status</span>
+        </a>
+      </div>
+    </td>
+  </tr>
+<table>
+</body>
+</html>

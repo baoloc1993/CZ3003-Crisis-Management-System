@@ -34,7 +34,7 @@
         // --------------------------------------------------
         function markerAdding() {
             //Set markers on the map
-            var image = "{% static "images/drop.png" %}";
+            var image = "{% static "images/pin.png" %}";
                 {% for form in formList %}
                     myLatlng    = new google.maps.LatLng({{ form.latitude }}, {{ form.longitude }});
                     marker      = new google.maps.Marker({
@@ -109,14 +109,14 @@
           <span class="a-btn-text">Suggest a crisis</span> 
           <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>
-        <a href="facebook" class="a-btn">
+        <a href="emailSend" class="a-btn">
           <span class="a-btn-symbol">e</span>
           <span class="a-btn-text">Compose email</span> 
           <span class="a-btn-slide-text">Agencies / PMO</span>
         </a>
-        <a href="updateCrisis" class="a-btn">
+        <a href="fbStatus" class="a-btn">
           <span class="a-btn-symbol">f</span>
-          <span class="a-btn-text">Public announce	</span> 
+          <span class="a-btn-text">Public announce </span> 
           <span class="a-btn-slide-text">Facebook / Twitter</span>
         </a>
       </div>
