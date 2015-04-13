@@ -31,8 +31,7 @@
  }
   function sendemail1()
   { 
-    window.alert(5 + 6);
-    var emailstr = readval;    
+    var emailstr = a;    
     $.ajax({
         type: 'POST',
         url: "https://mandrillapp.com/api/1.0/messages/send.json",
@@ -42,18 +41,23 @@
                 'from_email': 'cmscrisiscenter@gmail.com',
                 'to': [
                 {
-                'email': 'sgpmoffice@gmail.com',
-                'name': 'AMBULANCE AND MEDICAL SERVICES',
+                'email': 'sgarmedforces1@gmail.com',
+                'name': 'CIVIL DEFENCE AND ARMED FORCES',
                 'type': 'to'
                 },
                 {
-                'email': 'kaustav.chaudhuri14@gmail.com',
-                'name': 'POLICE',
+                'email': 'sgparamedics@gmail.com',
+                'name': 'PARAMEDICS',
+                'type': 'to'
+                },
+{
+                'email': 'sgcoastguard@gmail.com',
+                'name': 'COAST GUARD',
                 'type': 'to'
                 }
                 ],
                 'autotext': 'true',
-                'subject': 'CRISIS SITUATION(URGENT)',
+                'subject': 'CRISIS SITUATION AT HAND - TSUNAMI (URGENT)',
                 'html': emailstr
                         }
               }
@@ -63,8 +67,7 @@
   }
   function sendemail2()
   { 
-    window.alert(5 + 6);
-    var emailstr = readval;    
+    var emailstr = a;    
     $.ajax({
         type: 'POST',
         url: "https://mandrillapp.com/api/1.0/messages/send.json",
@@ -74,18 +77,18 @@
                 'from_email': 'cmscrisiscenter@gmail.com',
                 'to': [
                 {
-                'email': 'sgpmoffice@gmail.com',
+                'email': 'sgparamedics@gmail.com',
                 'name': 'AMBULANCE AND MEDICAL SERVICES',
                 'type': 'to'
                 },
                 {
-                'email': 'kaustav.chaudhuri14@gmail.com',
-                'name': 'POLICE',
+                'email': 'sgarmedforces1@gmail.com',
+                'name': 'MASK BOOTHS',
                 'type': 'to'
                 }
                 ],
                 'autotext': 'true',
-                'subject': 'CRISIS SITUATION(URGENT)',
+                'subject': 'CRISIS SITUATION AT HAND - HAZE (URGENT)',
                 'html': emailstr
                         }
               }
@@ -95,8 +98,8 @@
   }
   function sendemail3()
   { 
-    window.alert(5 + 6);
-    var emailstr = readval;    
+    var emailstr = a;    
+    console.log(a);
     $.ajax({
         type: 'POST',
         url: "https://mandrillapp.com/api/1.0/messages/send.json",
@@ -107,12 +110,7 @@
                 'to': [
                 {
                 'email': 'sgpmoffice@gmail.com',
-                'name': 'AMBULANCE AND MEDICAL SERVICES',
-                'type': 'to'
-                },
-                {
-                'email': 'kaustav.chaudhuri14@gmail.com',
-                'name': 'POLICE',
+                'name': 'PRIME MINISTERS OFFICE',
                 'type': 'to'
                 }
                 ],
@@ -128,6 +126,23 @@
 </script>
 </head>
 <body onload = "getvalues()">
+<script type="text/javascript"> 
+   a = "";
+</script>
+{% for crisis in crisisList %}
+{% if crisis.crisisStatus == "Happening" %}
+<script type="text/javascript"> 
+   a = a + "Crisis Type: " + "{{crisis.crisisType}} " + "\n";
+   a = a + "Severity level: " + "{{crisis.severity_level}} " + "\n";
+   a = a + "Latitude: " + "{{crisis.latitude}} " + "\n";
+   a = a + "Longitude: " + "{{crisis.longitude}} " + "\n";
+   a = a + "Start Time: " + "{{crisis.time}} " + "\n";
+   a = a + "Note: " + "{{crisis.note}} " + "\n";
+</script>
+{% endif %}
+{%endfor%}
+
+
 <table>
   <tr>    
     <td valign="top" width = "400px">

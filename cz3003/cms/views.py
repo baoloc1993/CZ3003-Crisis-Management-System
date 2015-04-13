@@ -49,7 +49,8 @@ def index(request):
     return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
 
 def email(request):
-    return render_to_response("emailSend.php")
+    crisisList = CrisisInstance.objects.all();
+    return render_to_response("emailSend.php", {'crisisList':crisisList})
 
 def customerindex(request):
     crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
