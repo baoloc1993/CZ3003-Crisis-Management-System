@@ -114,10 +114,22 @@ function testAPI()
  	console.log("Welcome! Fetching your information......");
  	poststatus();
  }
+
+function postTweeter(input)
+  {
+    var teststring = input;
+    $.ajax({
+      url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
+      type: 'GET'
+      }
+    );
+  }
+
 function poststatus()
  {
- 	//var opts = "HelloolleH";
   var opts = a;
+
+  // post to FB
  	var pageid = '349394821923058';
  	FB.api('/349394821923058/feed','post',{message: opts,to:pageid,from:pageid},function(response2){
  		console.log(response2);
@@ -129,6 +141,9 @@ function poststatus()
  		{
  		}
  	});
+
+  // post to Tweeter
+  postTweeter(opts);
  }
 </script>
 </head>
@@ -168,7 +183,7 @@ function poststatus()
 {% endif%}	
 {%endfor%}
 <div class = "fb-login-button" scope="public_profile" onclick = "checkLoginState()" onlogin='window.location.reload()'>Post All</div>
-
+<meta http-equiv="refresh" content="1; {% url 'cms:index' %}">
   </tr>
 </table>
 </body>

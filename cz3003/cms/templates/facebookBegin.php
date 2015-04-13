@@ -114,11 +114,23 @@ function testAPI()
  	console.log("Welcome! Fetching your information......");
  	poststatus();
  }
+
+function postTweeter(input)
+  {
+    var teststring = input;
+    $.ajax({
+      url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
+      type: 'GET'
+      }
+    );
+  }
+
 function poststatus()
  {
- 	//var opts = "HelloolleH";
-  var opts = "A new crisis is begining! Go check it out at http://localhost:8000/home/customerindex";
- 	var pageid = '349394821923058';
+ 	var opts = "A new crisis is begining! Go check it out at http://localhost:8000/home/customerindex";
+ 	
+  // post to FB
+  var pageid = '349394821923058';
  	FB.api('/349394821923058/feed','post',{message: opts,to:pageid,from:pageid},function(response2){
  		console.log(response2);
  		
@@ -129,6 +141,9 @@ function poststatus()
  		{
  		}
  	});
+
+  // post to Tweeter
+  postTweeter(opts);
  }
 </script>
 </head>
