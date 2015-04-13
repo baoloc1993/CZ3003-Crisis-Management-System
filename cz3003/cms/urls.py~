@@ -15,16 +15,19 @@ urlpatterns = patterns('',
 		url(r'^dmterminate/(?P<pk>\d+)/$', views.DMTerminateView.as_view(), name='DMterminate'),
 		url(r'^dmincidents$', views.DMIncidentListView.as_view(), name='DMincident-list'),
 		url(r'^dmterminate$', views.DMTerminateListView.as_view(), name='DMterminatelist'),
+		url(r'^dmoldlist$', views.DMOldListView.as_view(), name='DMoldlist'),
+		url(r'^dmold/(?P<pk>\d+)/$', views.DMOldView.as_view(), name='DMold'),
 		url(r'^dmupdate/(?P<pk>\d+)/$', views.DMUpdate, name='DMupdate'),
 		url(r'^dmupdateterminate/(?P<pk>\d+)/$', views.DMUpdateTerminate, name='DMupdateterminate'),
 
 		url(r'^index', views.index, name='index'),
+		url(r'^emailSend', views.email, name='emailSend'),
 		url(r'^updateIncident$', views.UpdateView.as_view(), name='updateIncident'),
 		url(r'^updateCrisis$', views.UpdateCrisisView.as_view(), name='updateCrisis'),		
 		url(r'^incidents$', views.IncidentListView.as_view(), name='incident-list'),
 
 		url(r'^archive/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
-		url(r'^customerindex', views.customerindex, name='index'),
+		url(r'^customerindex', views.customerindex, name='customerindex'),
 
 
 		url(r'^facebook', views.facebook, name='facebook'),

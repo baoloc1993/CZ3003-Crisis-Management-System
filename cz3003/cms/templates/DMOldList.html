@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+<link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
+<div class="container-fluid">
+    <p align="Center">
+    <font size="6">DM Data Archive</font>
+    </p>
+</div>
+
+<ul>
+{% for incident in object_list %}
+    {% if incident.crisisStatus == 'Stopped' %}
+    <li><a href="{% url 'cms:DMold' incident.id %}">
+	<font size="2" color="#00501F">
+		{{incident.id}}. 
+	</font>
+	<font size="3" color="#0000FF">
+		{{ incident.crisisType }}
+	</font>
+    </a></li>
+    {% endif %}
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+<br>
+<br>
+<br>
+<br>
+<a href="{% url 'cms:DMindex'%}" class="a-btn">
+<span class="a-btn-symbol">h</span>
+<span class="a-btn-text">Back to home page</span> 
+<span class="a-btn-slide-text">Decision maker</span>
+</a>
+</ul>

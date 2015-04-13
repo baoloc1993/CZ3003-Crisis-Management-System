@@ -79,10 +79,23 @@
 </div>
 
 <table>
-  <tr align = "center">    
+  <tr>    
 
-    <td align = "center"><div align = "center" id="map-canvas"/></td>
-
+    <td><div id="map-canvas"/></td>
+    <td style="width:50px" valign = "top" align = "left"> 
+	<font size="4">
+	</font>
+    </td>			
+{% for crisis in crisisList %}
+    <td style="width:300px" valign = "top" align = "left"> 
+	<font size="4" color = "red">
+	Type: {{crisis.crisisType}} <br>
+	Latitude: {{crisis.latitude}} <br> 
+	Longtitude: {{crisis.longitude}} <br>
+	Severity level: {{crisis.severity_level}} 
+	</font>
+    </td>			
+{%endfor%}
   </tr>
   <tr>
     <td valign="top" >
@@ -91,7 +104,6 @@
           <span class="a-btn-symbol">L</span>
           <span class="a-btn-text">Reload page</span> 
         </a>
-
       </div>
     </td>
   </tr>

@@ -49,4 +49,21 @@
 		<td />
 		<td>{{ crisisinstance.note  }}</td>
 	</tr>
+	<tr>
+		<td />
+		<td>Status</td>
+		<td />
+		<td>{{ crisisinstance.crisisStatus  }}</td>
+	</tr>
+	<tr height="10px"></tr>
+	<tr>
+		<td />
+		<td>
+			<a href="{% url 'cms:DMoldlist'%}" class="a-btn">
+			<span class="a-btn-symbol">h</span>
+			<span class="a-btn-text">Back to home page</span> 
+			<span class="a-btn-slide-text">Decision maker</span>
+			</a>
+		</td>
+	</tr>
 </table>
