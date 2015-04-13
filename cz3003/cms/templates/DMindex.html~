@@ -85,7 +85,7 @@
     <td valign="top">
       <div class="button-wrapper">
         <a href="{% url 'cms:DMoldlist' %}" class="a-btn">
-          <span class="a-btn-symbol">J</span>
+          <span class="a-btn-symbol">P</span>
           <span class="a-btn-text">Review old crisis  </span> 
           <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>

@@ -60,7 +60,6 @@
 
 </head>
 <body>
-{% include "header.html" %}
 {% if user.is_authenticated %}
     <script>
         window.location.replace("admin/login2.html");
@@ -89,6 +88,11 @@
 {% for crisis in crisisList %}
     <td style="width:300px" valign = "top" align = "left"> 
 	<font size="4" color = "red">
+	{% if crisis.crisisType == 'Tsunami' %}
+	 <img src="{% static "images/wave.png" %}" style="width:300px;height:150px">
+	{% else %}
+	 <img src="{% static "images/fog.png" %}" style="width:300px;height:150px">
+	{% endif %}
 	Type: {{crisis.crisisType}} <br>
 	Latitude: {{crisis.latitude}} <br> 
 	Longtitude: {{crisis.longitude}} <br>
