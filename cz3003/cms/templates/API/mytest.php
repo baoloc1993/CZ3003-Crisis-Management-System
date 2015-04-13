@@ -160,12 +160,15 @@ var readval="";
 function sendtophp(input)
   {
     //var teststring = "New trial";
-    var teststring = ""+input+"";
+    var teststring = input;
+    //alert(textstring);
     $.ajax({
       url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
       type: 'GET'
       }
     );
+    //alert("ajax finished");
+
   }
 
   //send email to the agencies
@@ -221,6 +224,7 @@ function sendtophp(input)
                   if(anotherstring[i].length != 0)
                   {
                     input = anotherstring[i];
+                    sendtophp(input);
                   }
                 }
                 alert("Done Twitter");
@@ -259,22 +263,6 @@ function sendtophp(input)
 
 <!-- Below we include the Login Button social Plugin,this button uses the Javascript SDK to present a graphical Login button that triggers the FB.login() function when clicked
 -->
-<?php
-
-    $tweetval = 'Tweet this thing';  
-    	
-
-
-
-   	$settings = array(
-	    'oauth_access_token' => "1588665025-GfWOkQ0of1gWOiAH0VFI8AbOofVhapb4sBW4IaP",
-	    'oauth_access_token_secret' => "O79udlwxY072q3mrXz0pss5t8vpMRZvjhEO3DklK3A5Ak",
-	    'consumer_key' => "eHZnbAfsggqIFWR27wg1FsNfC",
-	    'consumer_secret' => "Cg8OxBpJ7Mlkg2JsL8tOacpUbtdQwc0yB7GVQkU0sdMJMFOoFg"
-	);
-   
-
-?>
 <h1> Facebook Testing</h1>
 <br/><br/>
 <div class = "fb-login-button" scope="public_profile" onclick = "checkLoginState()" onlogin='window.location.reload()'>Post All</div>
