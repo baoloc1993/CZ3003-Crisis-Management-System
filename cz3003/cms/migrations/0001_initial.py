@@ -14,17 +14,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Account',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('account_name', models.CharField(max_length=200)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='CallOperatorForm',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('id_of_caller', models.CharField(max_length=10)),
                 ('name_of_caller', models.CharField(max_length=200)),
                 ('contact_number', models.IntegerField(max_length=20)),
@@ -35,123 +32,81 @@ class Migration(migrations.Migration):
                 ('X_coordinate', models.DecimalField(max_digits=30, decimal_places=10)),
                 ('Y_coordinate', models.DecimalField(max_digits=30, decimal_places=10)),
                 ('severity_level', models.CharField(max_length=200)),
-                ('status', models.DecimalField(max_digits=1, decimal_places=0, default=1)),
+                ('status', models.SmallIntegerField()),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='CrisisInstance',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('type_crisis', models.CharField(max_length=200)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('crisisType', models.CharField(max_length=200)),
                 ('severity_level', models.CharField(max_length=200)),
-                ('location_crisis', models.CharField(max_length=200)),
-                ('date_time', models.DateTimeField(max_length=200)),
-                ('content', models.CharField(max_length=200)),
+                ('lattitude', models.DecimalField(max_digits=30, decimal_places=10, default=1.3011873)),
+                ('longtitude', models.DecimalField(max_digits=30, decimal_places=10, default=103.8495055)),
+                ('time', models.DateTimeField(blank=True, default=datetime.datetime.now)),
+                ('note', models.CharField(max_length=200)),
                 ('staff_id', models.CharField(max_length=10)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='EmailMonitoring',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Event',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('crisis_content', models.CharField(max_length=200)),
                 ('event_time', models.DateField(max_length=200)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Map',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('name_location', models.CharField(max_length=200)),
                 ('x_location', models.FloatField(default=0.0)),
                 ('y_location', models.FloatField(default=0.0)),
             ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='GoogleMap',
-            fields=[
-                ('map_ptr', models.OneToOneField(primary_key=True, to='cms.Map', auto_created=True, serialize=False, parent_link=True)),
-            ],
-            options={
-            },
-            bases=('cms.map',),
         ),
         migrations.CreateModel(
             name='Question',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('question_text', models.CharField(max_length=200)),
                 ('pub_date', models.DateTimeField(verbose_name='date published')),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Report',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
                 ('crisis_instance', models.ForeignKey(to='cms.CrisisInstance')),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='SensorData',
             fields=[
-                ('id', models.AutoField(primary_key=True, auto_created=True, serialize=False, verbose_name='ID')),
-                ('data', models.CharField(max_length=200)),
-                ('time', models.DateTimeField(max_length=200)),
-                ('type', models.CharField(max_length=200)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True, serialize=False)),
+                ('time', models.DateTimeField(blank=True, default=datetime.datetime.now)),
+                ('sensorType', models.CharField(max_length=200)),
+                ('lattitude', models.DecimalField(max_digits=30, decimal_places=10, default=1.3011873)),
+                ('longtitude', models.DecimalField(max_digits=30, decimal_places=10, default=103.8495055)),
+                ('level', models.SmallIntegerField(default=3)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='NEA',
+            name='GoogleMap',
             fields=[
-                ('sensordata_ptr', models.OneToOneField(primary_key=True, to='cms.SensorData', auto_created=True, serialize=False, parent_link=True)),
+                ('map_ptr', models.OneToOneField(parent_link=True, auto_created=True, serialize=False, to='cms.Map', primary_key=True)),
             ],
-            options={
-            },
-            bases=('cms.sensordata',),
-        ),
-        migrations.CreateModel(
-            name='Weather',
-            fields=[
-                ('sensordata_ptr', models.OneToOneField(primary_key=True, to='cms.SensorData', auto_created=True, serialize=False, parent_link=True)),
-            ],
-            options={
-            },
-            bases=('cms.sensordata',),
+            bases=('cms.map',),
         ),
         migrations.AddField(
             model_name='map',
             name='sensor',
             field=models.ForeignKey(to='cms.SensorData'),
-            preserve_default=True,
         ),
     ]

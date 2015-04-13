@@ -15,60 +15,48 @@
 	</tr>
 	<tr>
 		<td />
-		<td>Name</td>
+		<td>Staff ID</td>
 		<td />
-		<td>{{ calloperatorform.name_of_caller }}</td>
+		<td>{{ crisisinstance.staff_id }}</td>
 	</tr>
 	<tr>
 		<td />
-		<td>Contact number</td>
+		<td>Crisis Type</td>
 		<td />
-		<td>{{ calloperatorform.contact_number }}</td>
-	</tr>
-	<tr>
-		<td />
-		<td>NRIC</td>
-		<td />
-		<td>{{ calloperatorform.nric }}</td>
-	</tr>
-	<tr>
-		<td />
-		<td>Content</td>
-		<td />
-		<td>{{ calloperatorform.content  }}</td>
-	</tr>
-	<tr>
-		<td />
-		<td>Operator ID</td>
-		<td />
-		<td>{{ calloperatorform.operator_id  }}</td>
+		<td>{{ crisisinstance.crisisType }}</td>
 	</tr>
 	<tr>
 		<td />
 		<td>Severity Level</td>
 		<td />
-		<td>{{ calloperatorform.severity_level  }}</td>
+		<td>{{ crisisinstance.severity_level }}</td>
 	</tr>
 	<tr>
 		<td />
-		<td>Date</td>
+		<td>Longitude</td>
 		<td />
-		<td>{{ calloperatorform.date  }}</td>
+		<td>{{ crisisinstance.longitude  }}</td>
 	</tr>
-	<tr></tr>
 	<tr>
 		<td />
-		<td>Status</td>
+		<td>Latitude</td>
 		<td />
-		<td>{{ calloperatorform.status  }}</td>
+		<td>{{ crisisinstance.latitude  }}</td>
+	</tr>
+	<tr>
+		<td />
+		<td>Note</td>
+		<td />
+		<td>{{ crisisinstance.note  }}</td>
 	</tr>
 	<tr height="10px"></tr>
 	<tr>
 		<td />
 		<td colspan="3">
 			<div class="button-wrapper">
-		        <a href="{% url 'cms:index'%}" class="a-btn">
-		          <span class="a-btn-text">Back to home page</span> 
+		        <a href="{% url 'cms:DMupdate' crisisinstance.id %}" class="a-btn">
+		          <span class="a-btn-text">Terminate crisis</span> 
+		          <span class="a-btn-slide-text">Tsunami/Haze</span>
 		        </a>
 		    </div>
 		</td>

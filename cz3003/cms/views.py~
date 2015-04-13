@@ -5,12 +5,14 @@ from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login
 from django.views import generic
 from cms.models import Question
-from cms.forms import MyForm
+from cms.forms import MyCrisisForm, MyIncidentForm, MyNEAForm
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.utils import timezone
 from cms.models import CallOperatorForm
+from cms.models import CrisisInstance
+from cms.models import SensorData
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import logout
@@ -41,18 +43,24 @@ def login(request):
     return render(request, 'admin/login2.html', {'state':state, 'username': username})
 
 def index(request):
-    formList = CallOperatorForm.objects.all().filter(status='2');
-    return render_to_response("index.html", {'formList':formList})
+    formList = CallOperatorForm.objects.all();
+    crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+    sensorList = SensorData.objects.all();
+    return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
+
+def customerindex(request):
+    crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+    return render_to_response("customerindex.html", {'crisisList':crisisList})
 
 def facebook(request):
     return render_to_response("API/mytest.php")
 
+def twitter(request):
+    return render_to_response("API/index.php")
+
 class IncidentListView(ListView):
     model = CallOperatorForm
-    def get_context_data(self, **kwargs):
-        context = super(IncidentListView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
-        return context
+    template_name = "IncidentListView.html"
 
 class DetailView(generic.DetailView):
     model = CallOperatorForm
@@ -60,36 +68,64 @@ class DetailView(generic.DetailView):
 
 class UpdateView(FormView):
     template_name = 'update.html'
-    form_class = MyForm
+    form_class = MyIncidentForm
+    success_url = 'index'
+
+    def form_valid(self, form):
+        form.save()
+        return super(UpdateView, self).form_valid(form)
+
+class UpdateNEAView(FormView):
+    template_name = 'updateNEA.html'
+    form_class = MyNEAForm
+    success_url = 'nea'
+    def form_valid(self, form):
+        form.save()
+        return super(UpdateNEAView, self).form_valid(form)
+
+class UpdateCrisisView(FormView):
+    template_name = 'updateCrisis.html'
+    form_class = MyCrisisForm
     success_url = 'index'
 
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.save()
-        return super(UpdateView, self).form_valid(form)
-
-
+        return super(UpdateCrisisView, self).form_valid(form)
 
 def DMindex(request):
-    formList = CallOperatorForm.objects.all();
-    return render_to_response("DMindex.html", {'formList':formList})
+    formList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+    sensorList = SensorData.objects.all();
+    return render_to_response("DMindex.html", {'formList':formList, 'sensorList':sensorList})
 
 def DMUpdate(request, pk=0):
-    crisis = CallOperatorForm.objects.get(id=pk)
-    crisis.status = 2
+    crisis = CrisisInstance.objects.get(id=pk)
+    crisis.crisisStatus = 'Happening'
+    crisis.save()
+    return render_to_response("DMUpdate.html");
+
+def DMUpdateTerminate(request, pk=0):
+    crisis = CrisisInstance.objects.get(id=pk)
+    crisis.crisisStatus = 'Stopped'
     crisis.save()
     return render_to_response("DMUpdate.html");
 
 class DMIncidentListView(ListView):
-    model = CallOperatorForm
+    model = CrisisInstance
     template_name = "DMIncidentListView.html"
 
+class DMTerminateListView(ListView):
+    model = CrisisInstance
+    template_name = "DMTerminateListView.html"
+
 class DMDetailView(generic.DetailView):
-    model = CallOperatorForm
+    model = CrisisInstance
     template_name = 'DMdetail.html'
 
-
+class DMTerminateView(generic.DetailView):
+    model = CrisisInstance
+    template_name = 'DMterminate.html'
 
 def logout_view(request):
 	logout(request)

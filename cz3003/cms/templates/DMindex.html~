@@ -34,7 +34,8 @@
         // --------------------------------------------------
         function markerAdding() {
             //Set markers on the map
-            var image = "{% static "images/drop.png" %}";
+            var image1 = "{% static "images/tsunami.png" %}";
+	    var image2 = "{% static "images/haze.png" %}";
                 {% for form in formList %}
                     myLatlng    = new google.maps.LatLng({{ form.latitude }}, {{ form.longitude }});
                     marker      = new google.maps.Marker({
@@ -42,23 +43,8 @@
                                         draggable:false,
                                         animation: google.maps.Animation.DROP,
                                         position: myLatlng,
-                                        icon: image  
-                                    });
-                {% endfor %}
-            var image1 = "{% static "images/tsunami.png" %}";
-	    var image2 = "{% static "images/haze.png" %}";
-                {% for crisis in crisisList %}
-                    myLatlng    = new google.maps.LatLng({{ crisis.latitude }}, {{ crisis.longitude }});
-                    marker      = new google.maps.Marker({
-                                        map:map,
-                                        draggable:false,
-                                        animation: google.maps.Animation.DROP,
-                                        position: myLatlng,
-                                        icon: {% if crisis.crisisType == 'Tsunami' %}
-					      image1
-					      {% else %}
-					      image2
-					      {% endif %}  
+                                        icon: {% if form.crisisType == 'Tsunami' %}
+					      {% endif %}image1  
                                     });
                 {% endfor %}
                 //google.maps.event.addListener(marker, 'click', toggleBounce);
@@ -83,42 +69,38 @@
 
 <div class="container-fluid">
         <p align="Center">
-        <font size="6">Operator Panel</font>
-        <br>
-        <br>
-        <br>
+        <font size="6">Decision Maker Panel</font>
+	<br>
+	<br>
+	<br>
+	<br>
 </p>
 </div>
 
 <table>
-  <tr>    
+  <tr>
     <td valign="top">
       <div class="button-wrapper">
-        <a href="incidents" class="a-btn" width = >
-          <span class="a-btn-symbol">K</span>
-          <span class="a-btn-text">Review old data</span> 
-          <span class="a-btn-slide-text">Incident / Crisis</span>
+        <a href="{% url 'cms:DMincident-list' %}" class="a-btn">
+          <span class="a-btn-symbol">J</span>
+          <span class="a-btn-text">Approve a crisis  </span> 
+          <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>
-        <a href="updateIncident" class="a-btn">
+        <a href="{% url 'cms:DMterminatelist' %}" class="a-btn">
+          <span class="a-btn-symbol">Q</span>
+          <span class="a-btn-text">Terminate a crisis</span> 
+          <span class="a-btn-slide-text">Haze / Tsunami</span>
+        </a>
+        <!-- <a href="update" class="a-btn">
           <span class="a-btn-symbol">R</span>
           <span class="a-btn-text">Update new data</span> 
           <span class="a-btn-slide-text">Incident / Crisis</span>
         </a>
-        <a href="updateCrisis" class="a-btn">
+        <a href="update" class="a-btn">
           <span class="a-btn-symbol">Q</span>
           <span class="a-btn-text">Suggest a crisis</span> 
           <span class="a-btn-slide-text">Haze / Tsunami</span>
-        </a>
-        <a href="facebook" class="a-btn">
-          <span class="a-btn-symbol">e</span>
-          <span class="a-btn-text">Compose email</span> 
-          <span class="a-btn-slide-text">Agencies / PMO</span>
-        </a>
-        <a href="updateCrisis" class="a-btn">
-          <span class="a-btn-symbol">f</span>
-          <span class="a-btn-text">Public announce	</span> 
-          <span class="a-btn-slide-text">Facebook / Twitter</span>
-        </a>
+        </a> -->
       </div>
 
     </td>
@@ -144,7 +126,7 @@
 		{%endfor%} m/s </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Water level</font>
+	<font size="4" color="blue">Wave level</font>
 	<br>
         <br>
 	<font size="3" color=
