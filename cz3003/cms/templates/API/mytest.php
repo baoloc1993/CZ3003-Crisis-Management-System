@@ -162,11 +162,7 @@ function sendtophp(input)
     //var teststring = "New trial";
     var teststring = ""+input+"";
     $.ajax({
-<<<<<<< HEAD
       url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
-=======
-      url: "static/index.php?data="+teststring+"",
->>>>>>> origin/kustavIntegration
       type: 'GET'
       }
     );

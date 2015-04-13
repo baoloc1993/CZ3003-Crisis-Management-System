@@ -19,14 +19,10 @@ urlpatterns = patterns('',
 		url(r'^dmupdateterminate/(?P<pk>\d+)/$', views.DMUpdateTerminate, name='DMupdateterminate'),
 
 		url(r'^index', views.index, name='index'),
-<<<<<<< HEAD
 		# url(r'^tweeter', views.tweeter, name='tweeter'),
 		url(r'^facebook', views.facebook, name='facebook'),
-		url(r'^update$', views.UpdateView.as_view(), name='detail'),
-=======
 		url(r'^updateIncident$', views.UpdateView.as_view(), name='updateIncident'),
 		url(r'^updateCrisis$', views.UpdateCrisisView.as_view(), name='updateCrisis'),		
->>>>>>> origin/kustavIntegration
 		url(r'^incidents$', views.IncidentListView.as_view(), name='incident-list'),
 
 		url(r'^archive/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
