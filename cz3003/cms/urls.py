@@ -25,6 +25,8 @@ urlpatterns = patterns('',
 		url(r'^updateIncident$', views.UpdateView.as_view(), name='updateIncident'),
 		url(r'^updateCrisis$', views.UpdateCrisisView.as_view(), name='updateCrisis'),		
 		url(r'^incidents$', views.IncidentListView.as_view(), name='incident-list'),
+		url(r'^codelete/(?P<pk>\d+)/$', views.CODelete, name='codelete'),
+
 
 		url(r'^archive/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),
 		url(r'^customerindex', views.customerindex, name='customerindex'),

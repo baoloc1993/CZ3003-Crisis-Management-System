@@ -49,7 +49,7 @@ def index(request):
     return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
 
 def email(request):
-    return render_to_response("emailSend.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
+    return render_to_response("emailSend.html")
 
 def customerindex(request):
     crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
@@ -107,6 +107,10 @@ def DMUpdate(request, pk=0):
     crisis.crisisStatus = 'Happening'
     crisis.save()
     return render_to_response("DMUpdate.html");
+
+def CODelete(request, pk=0):
+    CallOperatorForm.objects.get(id=pk).delete();
+    return render_to_response("COUpdate.html");
 
 def DMUpdateTerminate(request, pk=0):
     crisis = CrisisInstance.objects.get(id=pk)

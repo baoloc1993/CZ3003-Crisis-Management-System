@@ -108,6 +108,10 @@ def DMUpdate(request, pk=0):
     crisis.save()
     return render_to_response("DMUpdate.html");
 
+def CODelete(request, pk=0):
+    CallOperatorForm.objects.get(id=pk).delete();
+    return render_to_response("CODelete.html");
+
 def DMUpdateTerminate(request, pk=0):
     crisis = CrisisInstance.objects.get(id=pk)
     crisis.crisisStatus = 'Stopped'
