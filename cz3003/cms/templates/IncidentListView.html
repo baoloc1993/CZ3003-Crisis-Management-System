@@ -4,22 +4,20 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
 <div class="container-fluid">
     <p align="Center">
-    <font size="6">DM Data Archive</font>
+    <font size="6">Data Archive</font>
     </p>
 </div>
 
 <ul>
 {% for incident in object_list %}
-    {% if incident.crisisStatus == 'Pending' %}
-    <li><a href="{% url 'cms:DMdetail' incident.id %}">
+    <li><a href="{% url 'cms:detail' incident.id %}">
 	<font size="2" color="#00501F">
 		{{incident.id}}. 
 	</font>
 	<font size="3" color="#0000FF">
-		{{ incident.crisisType }}
+		{{ incident.name_of_caller }}
 	</font>
     </a></li>
-    {% endif %}
 {% empty %}
     <li>No articles yet.</li>
 {% endfor %}
@@ -27,9 +25,9 @@
 <br>
 <br>
 <br>
-<a href="{% url 'cms:DMindex'%}" class="a-btn">
+<a href="{% url 'cms:index'%}" class="a-btn">
 <span class="a-btn-symbol">h</span>
 <span class="a-btn-text">Back to home page</span> 
-<span class="a-btn-slide-text">Decision maker</span>
+<span class="a-btn-slide-text">Call Operator</span>
 </a>
 </ul>

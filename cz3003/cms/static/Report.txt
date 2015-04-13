@@ -1,0 +1,15 @@
+WEATHER REPORT NEW
+
+Last update at 2015-04-09 17:00:49
+
+Weather condition: Cloudy
+Current temperature: 32 Celsius
+High: 33 Celsius  -  Low: 27 Celsius
+
+Feel like: 37 Celsius
+Sunrise: 08:01
+Sunset: 18:10
+Humidity: 56%
+Visibility: 8 km
+Dew Point: 65
+Wind: 19.32 km/h

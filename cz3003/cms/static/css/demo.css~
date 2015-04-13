@@ -1,9 +1,11 @@
 /* CSS reset */
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	
 	margin:0;
 	padding:0;
 }
 html,body {
+	background-image: url("http://www.cartoontreasure.com/pic_content.php?pic_id=typhoon-city-road-free-desktop-wallpaper");
 	margin:0;
 	padding:0;
 }
@@ -38,8 +40,8 @@ abbr,acronym { border:0;
 }
 /* General Demo Style */
 body{
-    background:#f9f9f9 url(../images/stucco.png) repeat top left;
-	color: #333;
+    
+	color: black;
 	font-family: 'Oswald', Arial, sans-serif;
 	font-size: 13px;
 }
@@ -47,8 +49,9 @@ body{
 	position:relative;
 }
 a{
-	color: #fff;
+	color: #FFF;
 	text-decoration: none;
+	font-size: 20px;
 }
 .clr{
 	clear: both;
@@ -62,7 +65,7 @@ h1{
 	margin:0px;
 	padding:20px 20px 10px 20px;
 	font-size:34px;
-	color:#333;
+	color:#FFF;
     text-shadow:1px 1px 1px #fff;
 	text-align:left;
 	font-weight:400;
@@ -129,14 +132,14 @@ h1 span{
 }
 .more ul li.selected a,
 .more ul li.selected a:hover{
-	background:#aaa;
+	background:#121212;
 	color:#fff;
 	text-shadow:none;
 }
 .more ul li a{
 	color:#555;
     float:left;
-	background:#fff;
+	background:#121212;
     width:auto;
 	padding: 2px 5px;
 	-moz-box-shadow:1px 1px 2px #aaa;
@@ -144,7 +147,7 @@ h1 span{
 	box-shadow:1px 1px 2px #aaa;
 }
 .more ul li a:hover{
-	background:#000;
+	background:#121212;
 	color:#fff;
 }
 .button-wrapper{

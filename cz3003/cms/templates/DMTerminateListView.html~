@@ -10,8 +10,8 @@
 
 <ul>
 {% for incident in object_list %}
-    {% if incident.crisisStatus == 'Pending' %}
-    <li><a href="{% url 'cms:DMdetail' incident.id %}">
+    {% if incident.crisisStatus == 'Happening' %}
+    <li><a href="{% url 'cms:DMterminate' incident.id %}">
 	<font size="2" color="#00501F">
 		{{incident.id}}. 
 	</font>

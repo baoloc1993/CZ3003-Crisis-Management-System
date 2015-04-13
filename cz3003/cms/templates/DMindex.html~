@@ -108,7 +108,7 @@
 
     </td>
     <td><div id="map-canvas"/></td>
-    <td style="width:200px" valign="top" align="center" style = "margin-left:10px;">
+    <td style="width:150px" valign="top" align="center" style = "margin-left:10px;">
 	<font size="3" color="white">WAVE SPEED</font>
 	<br>
         <br>

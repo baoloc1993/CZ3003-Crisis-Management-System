@@ -17,24 +17,26 @@
    
 {% include "header.html" %}
 <script>
-	var logout = document.getElementbyId ("logout");
+	var logout = document.getElementById ("logout");
 	logout.style.display = "none";
 </script>
 </div>
-<div class="container-fluid">
+<div class="container-fluid" >
 
 
-    <h1>Login Form</h1>
-
-	{{ state }}
-	<form action="/home/login" method="post">
+    <h1 style = "font-size: 50px;color :#FFCC00;">Login Form</h1>
+	<br><br>
+	
+	<form action="/home/login" method="post" style = "color:#FFCC00;font-size: 30px; text-align:center;">
 		{% csrf_token %}
-		username:
-		<input type="text" name="username" value="{{ username }}" /><br />
-		password:
+		{{ state }}
+		<br>
+		USERNAME: 
+		<input type="text" name="username" value="{{ username }}" style  = "font-color:black;"/><br />
+		PASSWORD:
 		<input type="password" name="password" value="" /><br />
-
-		<input type="submit" value="Log In" />
+		<br>
+		<input class="btn btn-primary " type="submit" value="Log In"  style = " color:#FFCC00;t-size: 30px; padding: 10px 10px 10px 10px"/>
 	</form>
    
     

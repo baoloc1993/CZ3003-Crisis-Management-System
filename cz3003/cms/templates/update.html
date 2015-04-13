@@ -1,8 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Crisis Management System	</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
 {% load staticfiles %}
 <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+</head>
 
-<form action="" method="post">{% csrf_token %}
+<h1 style = "font-size: 50px;color: #FFCC00">UPDATE INCIDENT</h1>
+<form action="" method="post" style = "color:#FFCC00;font-size: 20px; text-align:center;">{% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Send message" />
+    <input type="submit" value="Send message" class = "btn btn-primary" style = "background-color: #FFCC00; border-color: #CCFF00;" />
 </form>

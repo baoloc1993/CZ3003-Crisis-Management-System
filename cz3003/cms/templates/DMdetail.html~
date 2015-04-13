@@ -55,7 +55,7 @@
 		<td colspan="3">
 			<div class="button-wrapper">
 		        <a href="{% url 'cms:DMupdate' crisisinstance.id %}" class="a-btn">
-		          <span class="a-btn-text">Start this crisis!</span> 
+		          <span class="a-btn-text">Start Crisis!</span> 
 		          <span class="a-btn-slide-text">Tsunami/Haze</span>
 		        </a>
 		    </div>

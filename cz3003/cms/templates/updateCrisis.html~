@@ -1,0 +1,9 @@
+{% load staticfiles %}
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
+<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Send message" class="btn btn-primary "/>
+</form>
