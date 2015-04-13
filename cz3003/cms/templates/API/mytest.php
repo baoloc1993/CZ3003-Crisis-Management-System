@@ -227,12 +227,8 @@ function sendtophp(input)
  }
 	
  //get the values from text file
-<<<<<<< HEAD
- var filepath = "{% static "reports/Report.txt" %}";
-=======
 {% load staticfiles %}
  var filepath = "{% static "Report.txt" %}"
->>>>>>> origin/kustavIntegration
  var anotherstring = "";
  var input = "";
  
