@@ -56,7 +56,20 @@ def customerindex(request):
     return render_to_response("customindex.html", {'crisisList':crisisList})
 
 def facebook(request):
-    return render_to_response("API/mytest.php")
+    return render_to_response("facebook.php")
+
+def facebookSelect(request):
+    return render_to_response("facebookSelect.html")
+
+def facebookBegin(request):
+    return render_to_response("facebookBegin.php")
+
+def facebookEnd(request):
+    return render_to_response("facebookEnd.php")
+
+def facebookSituation(request):
+    sensorList = SensorData.objects.all();
+    return render_to_response("facebookSituation.php", {'sensorList':sensorList})
 
 def twitter(request):
     return render_to_response("API/index.php")

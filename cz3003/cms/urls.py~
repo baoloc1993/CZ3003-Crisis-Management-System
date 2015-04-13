@@ -22,10 +22,15 @@ urlpatterns = patterns('',
 
 		url(r'^index', views.index, name='index'),
 		url(r'^emailSend', views.email, name='emailSend'),
+		url(r'^fbStatus', views.facebook, name='fbStatus'),
+		url(r'^fbPost', views.facebookSelect, name='fbPost'),
+		url(r'^fbBegin', views.facebookBegin, name='fbBegin'),
+		url(r'^fbBegin', views.facebookSituation, name='fbSituation'),
+		url(r'^fbEnd', views.facebookEnd, name='fbEnd'),
 		url(r'^updateIncident$', views.UpdateView.as_view(), name='updateIncident'),
 		url(r'^updateCrisis$', views.UpdateCrisisView.as_view(), name='updateCrisis'),		
 		url(r'^incidents$', views.IncidentListView.as_view(), name='incident-list'),
-		url(r'^codelete/(?P<pk>\d+)/$', views.DMUpdate, name='codelete'),
+		url(r'^codelete/(?P<pk>\d+)/$', views.CODelete, name='codelete'),
 
 
 		url(r'^archive/(?P<pk>\d+)/$', views.DetailView.as_view(), name='detail'),

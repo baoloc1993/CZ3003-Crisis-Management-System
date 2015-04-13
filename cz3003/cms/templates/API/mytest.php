@@ -58,7 +58,7 @@ var readval="";
       xfbml      : true,
       version    : 'v2.3'
     });
-
+test
   /* Now we have initialised the Javascript SDK, we call FB.getLoginStatus and this function gets the state of the person visiting this page and can return one of the three states to the callback you provide. They are - connected, not_authorised, and not logged into FB and app, these 3 cases are handled in the statusChangeCallBack function*/
 
   FB.getLoginStatus(function(response){

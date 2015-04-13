@@ -139,7 +139,7 @@
 	  <span class="a-btn-slide-text">/Ambulance </span>
         </a>
         <a onclick = 'sendemail2()' class="a-btn">
-          <span class="a-btn-symbol">S</span>
+          <span class="a-btn-symbol">d</span>
           <span class="a-btn-text"> Send Notification Email </span> 
           <span class="a-btn-slide-text"> Medical/ </span>
 	  <span class="a-btn-slide-text"> Mask booths </span>
