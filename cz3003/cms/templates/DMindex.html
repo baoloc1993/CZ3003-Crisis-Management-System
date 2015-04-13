@@ -34,23 +34,20 @@
         // --------------------------------------------------
         function markerAdding() {
             //Set markers on the map
-            var image = "{% static "images/drop.png" %}";
-            var myLatlng    = new google.maps.LatLng(1.377278, 103.797798);
-                marker      = new google.maps.Marker({
-                                    map:map,
-                                    draggable:true,
-                                    animation: google.maps.Animation.DROP,
-                                    position: myLatlng,
-                                    icon: image  
-                                });
+            var image1 = "{% static "images/tsunami.png" %}";
+	    var image2 = "{% static "images/haze.png" %}";
                 {% for form in formList %}
-                    myLatlng    = new google.maps.LatLng({{ form.X_coordinate }}, {{ form.Y_coordinate }});
+                    myLatlng    = new google.maps.LatLng({{ form.latitude }}, {{ form.longitude }});
                     marker      = new google.maps.Marker({
                                         map:map,
-                                        draggable:true,
+                                        draggable:false,
                                         animation: google.maps.Animation.DROP,
                                         position: myLatlng,
-                                        icon: image  
+                                        icon: {% if form.crisisType == 'Tsunami' %}
+					      image1
+					      {% else %}
+					      image2
+					      {% endif %}  
                                     });
                 {% endfor %}
                 //google.maps.event.addListener(marker, 'click', toggleBounce);
@@ -75,7 +72,11 @@
 
 <div class="container-fluid">
         <p align="Center">
-        <font size="6">Operator Panel</font>
+        <font size="6">Decision Maker Panel</font>
+	<br>
+	<br>
+	<br>
+	<br>
 </p>
 </div>
 
@@ -84,9 +85,14 @@
     <td valign="top">
       <div class="button-wrapper">
         <a href="{% url 'cms:DMincident-list' %}" class="a-btn">
-          <span class="a-btn-symbol">K</span>
-          <span class="a-btn-text">Review old data</span> 
-          <span class="a-btn-slide-text">Incident / Crisis</span>
+          <span class="a-btn-symbol">J</span>
+          <span class="a-btn-text">Approve a crisis  </span> 
+          <span class="a-btn-slide-text">Haze / Tsunami</span>
+        </a>
+        <a href="{% url 'cms:DMterminatelist' %}" class="a-btn">
+          <span class="a-btn-symbol">Q</span>
+          <span class="a-btn-text">Terminate a crisis</span> 
+          <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>
         <!-- <a href="update" class="a-btn">
           <span class="a-btn-symbol">R</span>
@@ -102,6 +108,86 @@
 
     </td>
     <td><div id="map-canvas"/></td>
+    <td style="width:200px" valign="top" align="center">
+	<font size="4" color="blue">Wave speed</font>
+	<br>
+        <br>
+	<font size="3" color=
+			{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'Wave speed' %}
+				{% if sensor.value >= 20 %}
+				"red"
+				{% else %}
+				"blue"
+				{% endif %}
+			{% endif%}
+			{%endfor%}> 
+		{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'Wave speed' %}
+			{{sensor.value}}
+			{% endif%}
+		{%endfor%} m/s </font>
+    </td>
+    <td style="width:200px" valign="top" align="center">
+	<font size="4" color="blue">Wave level</font>
+	<br>
+        <br>
+	<font size="3" color=
+			{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'Water level' %}
+				{% if sensor.value >= 550 %}
+				"red"
+				{% else %}
+				"blue"
+				{% endif %}
+			{% endif%}
+			{%endfor%}> 
+		{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'Water level' %}
+			{{sensor.value}}
+			{% endif%}
+		{%endfor%} m </font>
+    </td>
+    <td style="width:200px" valign="top" align="center">
+	<font size="4" color="blue">Earthquake magnitude</font>
+	<br>
+        <br>
+	<font size="3" color=
+			{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'Earthquake level' %}
+				{% if sensor.value >= 5 %}
+				"red"
+				{% else %}
+				"blue"
+				{% endif %}
+			{% endif%}
+			{%endfor%}>  
+		{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'Earthquake level' %}
+			{{sensor.value}}
+			{% endif%}
+		{%endfor%} </font>
+    </td>
+    <td style="width:200px" valign="top" align="center">
+	<font size="4" color="blue">PSI value</font>
+	<br>
+        <br>
+	<font size="3" color=
+			{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'PSI' %}
+				{% if sensor.value >= 200 %}
+				"red"
+				{% else %}
+				"blue"
+				{% endif %}
+			{% endif%}
+			{%endfor%}>  
+		{% for sensor in sensorList %}
+			{% if sensor.sensorType == 'PSI' %}
+			{{sensor.value}}
+			{% endif%}
+		{%endfor%}  </font>
+    </td>
   </tr>
 </table>
 </body>
