@@ -4,9 +4,9 @@ from cms import views
 
 urlpatterns = patterns('',
 		url(r'^$', views.home, name = 'home'),	
-		url(r'^login$', views.login, name='login'),
+		url(r'^login$', views.login_view, name='login'),
 		url(r'^logout/$', 'django.contrib.auth.views.logout',
-				  {'next_page': '/home/login'}),
+				  {'next_page': '/home/index'}),
 		
 		url(r'^nea$', views.UpdateNEAView.as_view(), name='updateNEA'),
 

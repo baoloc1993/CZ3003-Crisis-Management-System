@@ -16,6 +16,7 @@ from cms.models import SensorData
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import logout
+from django.middleware.csrf import get_token
 
 class LoggedInMixin(object):
 
@@ -23,30 +24,69 @@ class LoggedInMixin(object):
     def dispatch(self, *args, **kwargs):
         return super(LoggedInMixin, self).dispatch(*args, **kwargs)
 
-def login(request):
-    state = "Please log in below..."
-    username = password = ''
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                state = "You're successfully logged in!"
-                return redirect('cms:index')
-            else:
-                state = "Your account is not active, please contact the site admin."
-        else:
-            state = "Your username and/or password were incorrect."
+def login_view(request):
+	#dm = CMSUser(username = 'admin', user_type = 'DM')
+	csrf_token = get_token(request)
 
-    return render(request, 'admin/login2.html', {'state':state, 'username': username})
+	formList = CallOperatorForm.objects.all();
+	crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+	sensorList = SensorData.objects.all();
+	state = "Please log in below..."
+	username = password = ''
+	if request.POST:
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+        	
+		user = authenticate(username=username, password=password)
+		
+
+		if user is not None:
+			if user.is_active:
+				login (request,user)
+				#check the type of user
+				#cmsuser = CMSUser.objects.filter(username = username)
+				if (username == 'decisionmaker'):
+					#DMindex(request)
+					#formList = CallOperatorForm.objects.all()
+					#return render_to_response("DMindex.html", {'formList':formList})
+					#return render_to_response("index.html", RequestContext(request))
+					formList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+					sensorList = SensorData.objects.all();
+					return render_to_response("DMindex.html", {'formList':formList, 'sensorList':sensorList})
+
+				if (username == 'operator'):
+					formList = CallOperatorForm.objects.all();
+					crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+					sensorList = SensorData.objects.all();
+					return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})	
+				else:
+					formList = CallOperatorForm.objects.all();
+					crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+					sensorList = SensorData.objects.all();
+					return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})		
+				state = "You're successfully logged in!"
+					
+			else:
+				state = "Your account is not active, please contact the site admin."
+		else:
+			state = "Your username and/or password were incorrect."
+	return render_to_response('admin/login2.html',{'state':state, 'username': username})
 
 def index(request):
-    formList = CallOperatorForm.objects.all();
-    crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
-    sensorList = SensorData.objects.all();
-    return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
+	csrf_token = get_token(request)
+	formList = CallOperatorForm.objects.all();
+	crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+	sensorList = SensorData.objects.all();
+    #return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
+	if request.user.is_authenticated():
+		if (request.user.username == "operator"):
+			return render_to_response("index.html", {'formList':formList, 'crisisList':crisisList, 'sensorList':sensorList})
+		else:
+			formList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
+			sensorList = SensorData.objects.all();
+			return render_to_response("DMindex.html", {'formList':formList, 'sensorList':sensorList})
+	else:
+		return render_to_response("admin/login2.html", RequestContext(request) )
 
 def email(request):
     crisisList = CrisisInstance.objects.all();

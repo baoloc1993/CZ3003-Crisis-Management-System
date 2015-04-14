@@ -4,9 +4,9 @@ from cms import views
 
 urlpatterns = patterns('',
 		url(r'^$', views.home, name = 'home'),	
-		url(r'^login$', views.login, name='login'),
+		url(r'^login$', views.loginv_view, name='login'),
 		url(r'^logout/$', 'django.contrib.auth.views.logout',
-				  {'next_page': '/home/login'}),
+				  {'next_page': '/home/index'}),
 		
 		url(r'^nea$', views.UpdateNEAView.as_view(), name='updateNEA'),
 
@@ -25,7 +25,7 @@ urlpatterns = patterns('',
 		url(r'^fbStatus', views.facebook, name='fbStatus'),
 		url(r'^fbPost', views.facebookSelect, name='fbPost'),
 		url(r'^fbBegin', views.facebookBegin, name='fbBegin'),
-		url(r'^fbBegin', views.facebookSituation, name='fbSituation'),
+		url(r'^fbSituation', views.facebookSituation, name='fbSituation'),
 		url(r'^fbEnd', views.facebookEnd, name='fbEnd'),
 		url(r'^updateIncident$', views.UpdateView.as_view(), name='updateIncident'),
 		url(r'^updateCrisis$', views.UpdateCrisisView.as_view(), name='updateCrisis'),		

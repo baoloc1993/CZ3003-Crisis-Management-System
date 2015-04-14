@@ -4,17 +4,17 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
 <div class="container-fluid">
     <p align="Center">
-    <font size="6">Data Archive</font>
+    <font size="6">DATA ARCHIVE</font>
     </p>
 </div>
 
 <ul>
 {% for incident in object_list %}
     <li><a href="{% url 'cms:detail' incident.id %}">
-	<font size="2" color="#00501F">
+	<font size="3" color="white">
 		{{incident.id}}. 
 	</font>
-	<font size="3" color="#0000FF">
+	<font size="4" color="white">
 		{{ incident.name_of_caller }}
 	</font>
     </a></li>

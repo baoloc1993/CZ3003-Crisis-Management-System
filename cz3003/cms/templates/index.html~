@@ -34,7 +34,7 @@
         // --------------------------------------------------
         function markerAdding() {
             //Set markers on the map
-            var image = "{% static "images/pin.png" %}";
+            var image = "{% static "images/drop.png" %}";
                 {% for form in formList %}
                     myLatlng    = new google.maps.LatLng({{ form.latitude }}, {{ form.longitude }});
                     marker      = new google.maps.Marker({
@@ -83,7 +83,7 @@
 
 <div class="container-fluid">
         <p align="Center">
-        <font size="6">Operator Panel</font>
+        <font size="6">OPERATOR PANEL</font>
         <br>
         <br>
         <br>
@@ -94,29 +94,29 @@
   <tr>    
     <td valign="top">
       <div class="button-wrapper">
-        <a href="incidents" class="a-btn" width = >
+        <a href="incidents" class="a-btn" width = 300px >
           <span class="a-btn-symbol">K</span>
-          <span class="a-btn-text">Review old data</span> 
+          <span class="a-btn-text">REVIEW OLD DATA</span> 
           <span class="a-btn-slide-text">Incident / Crisis</span>
         </a>
-        <a href="updateIncident" class="a-btn">
+        <a href="updateIncident" class="a-btn" width = 300px>
           <span class="a-btn-symbol">R</span>
-          <span class="a-btn-text">Update new data</span> 
+          <span class="a-btn-text">UPDATE NEW DATA</span> 
           <span class="a-btn-slide-text">Incident / Crisis</span>
         </a>
-        <a href="updateCrisis" class="a-btn">
+        <a href="updateCrisis" class="a-btn" width = 300px>
           <span class="a-btn-symbol">Q</span>
-          <span class="a-btn-text">Suggest a crisis</span> 
+          <span class="a-btn-text">SUGGEST CRISIS</span> 
           <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>
-        <a href="emailSend" class="a-btn">
+        <a href="facebook" class="a-btn" width = 300px>
           <span class="a-btn-symbol">e</span>
-          <span class="a-btn-text">Compose email</span> 
+          <span class="a-btn-text">COMPOSE EMAIL</span> 
           <span class="a-btn-slide-text">Agencies / PMO</span>
         </a>
-        <a href="fbStatus" class="a-btn">
+        <a href="updateCrisis" class="a-btn" width = 300px>
           <span class="a-btn-symbol">f</span>
-          <span class="a-btn-text">Public announce </span> 
+          <span class="a-btn-text">PUBLIC ANNOUNCE	</span> 
           <span class="a-btn-slide-text">Facebook / Twitter</span>
         </a>
       </div>
@@ -124,10 +124,10 @@
     </td>
     <td><div id="map-canvas"/></td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Wave speed</font>
+	<font size="3" color="white">WAVE SPEED</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'Wave speed' %}
 				{% if sensor.value >= 20 %}
@@ -144,10 +144,10 @@
 		{%endfor%} m/s </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Water level</font>
+	<font size="3" color="white">WATER LEVEL</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'Water level' %}
 				{% if sensor.value >= 550 %}
@@ -164,7 +164,7 @@
 		{%endfor%} m </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Earthquake magnitude</font>
+	<font size="3" color="white">EARTHQUAKE MAGNITUE</font>
 	<br>
         <br>
 	<font size="3" color=
@@ -184,10 +184,10 @@
 		{%endfor%} </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">PSI value</font>
+	<font size="3" color="white">PSI VALUE</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'PSI' %}
 				{% if sensor.value >= 200 %}

@@ -72,7 +72,7 @@
 
 <div class="container-fluid">
         <p align="Center">
-        <font size="6">Decision Maker Panel</font>
+        <font size="6">DECISION MAKER PANEL</font>
 	<br>
 	<br>
 	<br>
@@ -84,19 +84,14 @@
   <tr>
     <td valign="top">
       <div class="button-wrapper">
-        <a href="{% url 'cms:DMoldlist' %}" class="a-btn">
-          <span class="a-btn-symbol">P</span>
-          <span class="a-btn-text">Review old crisis  </span> 
-          <span class="a-btn-slide-text">Haze / Tsunami</span>
-        </a>
-        <a href="{% url 'cms:DMincident-list' %}" class="a-btn">
+        <a href="{% url 'cms:DMincident-list' %}" class="a-btn" style="width: 300px;">
           <span class="a-btn-symbol">J</span>
-          <span class="a-btn-text">Approve a crisis  </span> 
+          <span class="a-btn-text">APPROVE A CRISIS  </span> 
           <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>
-        <a href="{% url 'cms:DMterminatelist' %}" class="a-btn">
+        <a href="{% url 'cms:DMterminatelist' %}" class="a-btn" style="width: 300px;">
           <span class="a-btn-symbol">Q</span>
-          <span class="a-btn-text">Terminate a crisis</span> 
+          <span class="a-btn-text">TERMINATE A CRISIS</span> 
           <span class="a-btn-slide-text">Haze / Tsunami</span>
         </a>
         <!-- <a href="update" class="a-btn">
@@ -113,11 +108,11 @@
 
     </td>
     <td><div id="map-canvas"/></td>
-    <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Wave speed</font>
+    <td style="width:200px" valign="top" align="center" style = "margin-left:10px;">
+	<font size="3" color="white">WAVE SPEED</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'Wave speed' %}
 				{% if sensor.value >= 20 %}
@@ -134,10 +129,10 @@
 		{%endfor%} m/s </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Water level</font>
+	<font size="3" color="white">WAVE LEVEL</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'Water level' %}
 				{% if sensor.value >= 550 %}
@@ -154,10 +149,10 @@
 		{%endfor%} m </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">Earthquake magnitude</font>
+	<font size="3" color="white">EARTHQUAKE MAGNITUDE</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'Earthquake level' %}
 				{% if sensor.value >= 5 %}
@@ -174,10 +169,10 @@
 		{%endfor%} </font>
     </td>
     <td style="width:200px" valign="top" align="center">
-	<font size="4" color="blue">PSI value</font>
+	<font size="3" color="white">PSI VALUE</font>
 	<br>
         <br>
-	<font size="3" color=
+	<font size="2" color=
 			{% for sensor in sensorList %}
 			{% if sensor.sensorType == 'PSI' %}
 				{% if sensor.value >= 200 %}
