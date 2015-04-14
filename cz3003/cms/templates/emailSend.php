@@ -6,8 +6,6 @@
 
 <script>
  var readval="";
- {% load staticfiles %}
- var filepath = "{% static "reports/Report.txt" %}"
  var anotherstring = "";
  var input = "";
  function getvalues()

@@ -125,7 +125,7 @@
   }
 </script>
 </head>
-<body onload = "getvalues()">
+<body>
 <script type="text/javascript"> 
    a = "";
 </script>
