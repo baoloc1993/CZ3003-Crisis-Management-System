@@ -70,7 +70,8 @@ def facebookEnd(request):
 
 def facebookSituation(request):
     sensorList = SensorData.objects.all();
-    return render_to_response("facebookSituation.php", {'sensorList':sensorList})
+    crisisList = CrisisInstance.objects.all();
+    return render_to_response("facebookSituation.php", {'sensorList':sensorList, 'crisisList':crisisList})
 
 def twitter(request):
     return render_to_response("API/index.php")

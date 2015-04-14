@@ -117,17 +117,20 @@ function testAPI()
 
 function postTweeter(input)
   {
-    var teststring = input;
+    var n = input.length;
+    var maxChar = 145;
+    var textinput = input;
     $.ajax({
-      url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
+      url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+textinput+"",
       type: 'GET'
       }
     );
+    // console.log(textinput);
   }
 
 function poststatus()
  {
- 	var opts = "A new crisis is begining! Go check it out at http://localhost:8000/home/customerindex";
+ 	var opts = "Crisis is begining! Go check it out at http://localhost:8000/home/customerindex";
  	
   // post to FB
   var pageid = '349394821923058';

@@ -117,12 +117,25 @@ function testAPI()
 
 function postTweeter(input)
   {
-    var teststring = input;
-    $.ajax({
-      url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+teststring+"",
-      type: 'GET'
-      }
-    );
+    var n = input.length;
+    var maxChar = 100;
+    for (var x=0; x<n; x+=maxChar)
+    {
+      var textinput = input.substr( x, maxChar );
+      $.ajax({
+        url: "http://localhost/~kaustavchaudhuri/site/twitter-api-php-master/index.php?data="+textinput+"",
+        type: 'GET'
+        }
+      );
+      console.log(textinput);
+      // var x = 1;
+      // var y = null; // To keep under proper scope
+
+      // setTimeout(function() {
+      //     x = x * 3 + 2;
+      //     y = x / 2;
+      // }, 100);
+    }
   }
 
 function poststatus()
@@ -180,10 +193,34 @@ function poststatus()
 <script type="text/javascript"> 
    a = a + "PSI: " + "{{sensor.value}} " + "\n";
 </script>
-{% endif%}	
+{% endif %}	
+{% endfor %}
+{% for crisis in crisisList %}
+{% if crisis.crisisStatus == "Happening" %}
+<script type="text/javascript"> 
+   a = a + "Crisis Type: " + "{{crisis.crisisType}} " + "\n";
+   a = a + "Severity level: " + "{{crisis.severity_level}} " + "\n";
+   a = a + "Latitude: " + "{{crisis.latitude}} " + "\n";
+   a = a + "Longitude: " + "{{crisis.longitude}} " + "\n";
+   a = a + "Start Time: " + "{{crisis.time}} " + "\n";
+   a = a + "Note: " + "{{crisis.note}} " + "\n";
+</script>
+{% if crisis.crisisType == "Haze" %}
+<script type="text/javascript">
+   a = a + "Citizens are advised to find masks to prevent health hazards due to haze";
+</script>
+{% else %}
+<script type="text/javascript">
+   a = a + "Citizens are advised to find higher ground and to move away from shore";
+</script>
+
+{% endif %}
+
+{% endif %}
 {%endfor%}
+
 <div class = "fb-login-button" scope="public_profile" onclick = "checkLoginState()" onlogin='window.location.reload()'>Post All</div>
-<meta http-equiv="refresh" content="1; {% url 'cms:index' %}">
+<!-- <meta http-equiv="refresh" content="1; {% url 'cms:index' %}"> -->
   </tr>
 </table>
 </body>
