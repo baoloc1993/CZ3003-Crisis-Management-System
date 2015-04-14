@@ -50,7 +50,7 @@ def index(request):
 
 def email(request):
     crisisList = CrisisInstance.objects.all();
-    return render_to_response("emailSend.php")
+    return render_to_response("emailSend.php", {'crisisList':crisisList})
 
 def customerindex(request):
     crisisList = CrisisInstance.objects.all().filter(crisisStatus = 'Happening');
@@ -87,7 +87,7 @@ class UpdateView(FormView):
     template_name = 'update.html'
     form_class = MyIncidentForm
     success_url = 'index'
-
+    form_class.clean_recipients(self);
     def form_valid(self, form):
         form.save()
         return super(UpdateView, self).form_valid(form)

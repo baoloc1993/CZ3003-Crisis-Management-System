@@ -8,6 +8,13 @@ class MyIncidentForm(forms.ModelForm):
     class Meta:
         model = CallOperatorForm
         fields = ['name_of_caller', 'contact_number', 'nric', 'content', 'operator_id', 'latitude', 'longitude', 'severity_level', 'status']
+    def clean_nric(self):
+        data = self.cleaned_data['nric']
+        if data == "S123456G":
+            raise forms.ValidationError("This caller is in our black list!")
+        if data == "S654321F":
+            raise forms.ValidationError("This caller is in our black list!")
+        return data
 
 class MyCrisisForm(forms.ModelForm):
     class Meta:

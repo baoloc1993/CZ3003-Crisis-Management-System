@@ -1,3 +1,5 @@
+<html>
+<head>
 {% load staticfiles %}
 <link href='http//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css' />
 <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
@@ -5,8 +7,121 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" type="text/css" href="{% static "css/demo.css" %}" />
 <link rel="stylesheet" type="text/css" href="{% static "css/style7.css" %}" />
-
-<table>
+<script>
+  function sendemail1()
+  { 
+    var emailstr = a;    
+    $.ajax({
+        type: 'POST',
+        url: "https://mandrillapp.com/api/1.0/messages/send.json",
+        data: {
+                'key': '1EbdMZfeZMfocTjXVaO_bw',
+                'message': {
+                'from_email': 'cmscrisiscenter@gmail.com',
+                'to': [
+                {
+                'email': 'sgarmedforces1@gmail.com',
+                'name': 'CIVIL DEFENCE AND ARMED FORCES',
+                'type': 'to'
+                },
+                {
+                'email': 'sgparamedics@gmail.com',
+                'name': 'PARAMEDICS',
+                'type': 'to'
+                },
+{
+                'email': 'sgcoastguard@gmail.com',
+                'name': 'COAST GUARD',
+                'type': 'to'
+                }
+                ],
+                'autotext': 'true',
+                'subject': 'CRISIS SITUATION AT HAND - TSUNAMI (URGENT)',
+                'html': emailstr
+                        }
+              }
+	 }).done(function(responseemail) {
+	   console.log(responseemail); // if you're into that sorta thing
+	 });
+  }
+  function sendemail2()
+  { 
+    var emailstr = a;    
+    $.ajax({
+        type: 'POST',
+        url: "https://mandrillapp.com/api/1.0/messages/send.json",
+        data: {
+                'key': '1EbdMZfeZMfocTjXVaO_bw',
+                'message': {
+                'from_email': 'cmscrisiscenter@gmail.com',
+                'to': [
+                {
+                'email': 'sgparamedics@gmail.com',
+                'name': 'AMBULANCE AND MEDICAL SERVICES',
+                'type': 'to'
+                },
+                {
+                'email': 'sgarmedforces1@gmail.com',
+                'name': 'MASK BOOTHS',
+                'type': 'to'
+                }
+                ],
+                'autotext': 'true',
+                'subject': 'CRISIS SITUATION AT HAND - HAZE (URGENT)',
+                'html': emailstr
+                        }
+              }
+	 }).done(function(responseemail) {
+	   console.log(responseemail); // if you're into that sorta thing
+	 });
+  }
+  function sendemail3()
+  { 
+    var emailstr = a;    
+    console.log(a);
+    $.ajax({
+        type: 'POST',
+        url: "https://mandrillapp.com/api/1.0/messages/send.json",
+        data: {
+                'key': '1EbdMZfeZMfocTjXVaO_bw',
+                'message': {
+                'from_email': 'cmscrisiscenter@gmail.com',
+                'to': [
+                {
+                'email': 'sgpmoffice@gmail.com',
+                'name': 'PRIME MINISTERS OFFICE',
+                'type': 'to'
+                }
+                ],
+                'autotext': 'true',
+                'subject': 'CRISIS SITUATION(URGENT)',
+                'html': emailstr
+                        }
+              }
+	 }).done(function(responseemail) {
+	   console.log(responseemail); // if you're into that sorta thing
+	 });
+  }
+  function sendAllEmails() {
+	sendemail1();
+	sendemail2();
+	sendemail3();
+  }
+</script>
+</head>
+<body>
+<table>	
+	<script type="text/javascript"> 
+	   a = "A new crisis happens!";
+	</script>
+	<script type="text/javascript"> 
+	   a = a + "Crisis Type: " + "{{crisisinstance.crisisType}} " + "\n";
+	   a = a + "Severity level: " + "{{crisisinstance.severity_level}} " + "\n";
+	   a = a + "Latitude: " + "{{crisisinstance.latitude}} " + "\n";
+	   a = a + "Longitude: " + "{{crisisinstance.longitude}} " + "\n";
+	   a = a + "Start Time: " + "{{crisisinstance.time}} " + "\n";
+	   a = a + "Note: " + "{{crisisinstance.note}} " + "\n";
+	</script>
 	<tr height = "10px">
 		<td width="10px"></td>
 		<td />
@@ -54,7 +169,7 @@
 		<td />
 		<td colspan="3">
 			<div class="button-wrapper">
-		        <a href="{% url 'cms:DMupdate' crisisinstance.id %}" class="a-btn">
+		        <a href="{% url 'cms:DMupdate' crisisinstance.id %}" class="a-btn" onclick = 'sendAllEmails()'>
 		          <span class="a-btn-text">Start this crisis!</span> 
 		          <span class="a-btn-slide-text">Tsunami/Haze</span>
 		        </a>
@@ -62,3 +177,6 @@
 		</td>
 	</tr>
 </table>
+
+</body>
+</html>

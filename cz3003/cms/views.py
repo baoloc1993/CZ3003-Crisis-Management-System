@@ -87,7 +87,6 @@ class UpdateView(FormView):
     template_name = 'update.html'
     form_class = MyIncidentForm
     success_url = 'index'
-
     def form_valid(self, form):
         form.save()
         return super(UpdateView, self).form_valid(form)
